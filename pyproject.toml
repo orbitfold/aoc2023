@@ -1,0 +1,11 @@
+[project]
+name = "aoc2023"
+description = "my solutions to advent of code 2023"
+version = "0.0.1"
+authors = [
+    { name = "Vytautas Jancauskas", email = "vytautas.jancauskas@dlr.de" }
+]
+dependencies = [
+    "numpy",
+    "pandas"
+]
