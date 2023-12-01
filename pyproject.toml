@@ -7,5 +7,6 @@ authors = [
 ]
 dependencies = [
     "numpy",
-    "pandas"
+    "pandas",
+    "click"
 ]

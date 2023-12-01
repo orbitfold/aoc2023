@@ -1,9 +1,7 @@
 import click
 
-@click.command()
-@click.option('-i', '--input', help='Input file')
-def calibration(input_file):
-    pass
+def parse(inputs):
+    return []
 
 if __name__ == '__main__':
-    calibration()
+    pass
