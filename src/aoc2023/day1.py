@@ -14,6 +14,9 @@ def parse(inputs):
         result.append(a * 10 + b)
     return result
 
+def parse_adv(inputs):
+    return []
+
 @click.command()
 @click.option('-i', '--input', help='Input file')
 def main(input):
