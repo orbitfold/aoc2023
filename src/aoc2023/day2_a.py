@@ -22,6 +22,16 @@ def parse_game(line):
         result.append(color_counts)
     return result
     
+@click.command()
+@click.option('-i', '--input', help='Input file')
+def main(input):
+    id_sum = 0
+    with open(input, 'r') as fd:
+        for i, line in enumerate(fd.readlines()):
+            parsed = parse_game(line)
+            if all([r <= 12 and g <= 13 and b <= 14 for r, g, b in parsed]):
+                id_sum += (i + 1)
+    print(id_sum)
 
 if __name__ == '__main__':
-    pass
+    main()

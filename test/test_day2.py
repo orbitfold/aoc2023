@@ -1,4 +1,5 @@
 from aoc2023.day2_a import parse_game
+from aoc2023.day2_b import check_validity
 
 INPUT = [
     "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
@@ -15,3 +16,11 @@ def test_day2():
     assert(result[2] == [[20, 8, 6], [4, 13, 5], [1, 5, 0]])
     assert(result[3] == [[3, 1, 6], [6, 3, 0], [14, 3, 15]])
     assert(result[4] == [[6, 3, 1], [1, 2, 2]])
+
+def test_day2_b():
+    result = [check_validity(parse_game(input)) for input in INPUT]
+    assert(result[0] == [4, 2, 6])
+    assert(result[1] == [1, 3, 4])
+    assert(result[2] == [20, 13, 6])
+    assert(result[3] == [14, 3, 15])
+    assert(result[4] == [6, 3, 2])
