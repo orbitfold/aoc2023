@@ -45,10 +45,15 @@ def parse_adv(inputs):
 
 @click.command()
 @click.option('-i', '--input', help='Input file')
-def main(input):
+@click.option('-a', '--advanced', is_flag=True, default=False, help='Advanced mode')
+def main(input, advanced):
     with open(input, 'r') as fd:
         lines = fd.readlines()
-    print(sum(parse(lines)))
+    if advanced:
+        print("Advanced mode")
+        print(sum(parse_adv(lines)))
+    else:
+        print(sum(parse(lines)))
 
 if __name__ == '__main__':
     main()
