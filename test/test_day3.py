@@ -35,5 +35,4 @@ def test_day3_a_2():
 
 def test_day3_b():
     result = find_gears(INPUT)
-    import pdb; pdb.set_trace()
     assert(result == {(1, 3): [467, 35], (4, 3): [617], (8, 5): [755, 598]})
