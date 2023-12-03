@@ -2,9 +2,10 @@ import numpy as np
 from itertools import product
 import click
 
-def parse_numbers(input_):
+def find_gears(input_):
     arr = np.array([list(line.strip()) for line in input_])
     result = []
+    stars = {}
     for i in range(arr.shape[0]):
         in_number = False
         part_number = False
@@ -19,8 +20,9 @@ def parse_numbers(input_):
                 j1 = j + 1
                 for i_, j_ in product([i0, i, i1], [j0, j, j1]):
                     try:
-                        if (not arr[i_][j_].isnumeric()) and (arr[i_][j_] != '.'):
+                        if (not arr[i_][j_].isnumeric()) and (arr[i_][j_] == '*'):
                             part_number = True
+                            gear_idx = (i_, j_)
                     except:
                         continue
             elif not arr[i][j].isnumeric() and in_number:
@@ -31,7 +33,10 @@ def parse_numbers(input_):
                     number_numeric += int(digit) * 10 ** power
                     power += 1
                 if part_number:
-                    result.append(number_numeric)
+                    try:
+                        stars[gear_idx].append(number_numeric)
+                    except KeyError:
+                        stars[gear_idx] = [number_numeric]
                 in_number = False
                 part_number = False
         if in_number:
@@ -42,19 +47,21 @@ def parse_numbers(input_):
                 number_numeric += int(digit) * 10 ** power
                 power += 1
             if part_number:
-                result.append(number_numeric)
+                try:
+                    stars[gear_idx].append(number_numeric)
+                except KeyError:
+                    stars[gear_idx] = [number_numeric]                
             in_number = False
             part_number = False            
-    return result
+    return stars
 
 @click.command()
 @click.option('-i', '--input-file', help='Input file')
 def main(input_file):
     with open(input_file, 'r') as fd:
         lines = fd.readlines()
-    result = parse_numbers(lines)
-    print(result)
-    print(sum(result))
+    result = find_gears(lines)
+    print(sum([result[key][0] * result[key][1] for key in result if len(result[key]) == 2]))
 
 if __name__ == '__main__':
     main()
