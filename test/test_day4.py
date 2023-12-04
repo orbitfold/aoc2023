@@ -1,4 +1,5 @@
 from aoc2023.day4_a import parse_cards
+from aoc2023.day4_b import count_cards
 
 INPUT = ["Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53",
          "Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19",
@@ -15,3 +16,8 @@ def test_day4_a():
     assert(results[3] == 1)
     assert(results[4] == 0)
     assert(results[5] == 0)
+
+def test_day4_b():
+    results = count_cards(INPUT)
+    assert(results == 30)
+    
