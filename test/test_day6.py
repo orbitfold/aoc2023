@@ -14,4 +14,4 @@ def test_day6_b():
     distances = parse_input_b(INPUT)
     assert(distances == [71530, 940200])
     times = calculate_winning_times_b(distances)
-    import pdb; pdb.set_trace()
+    
