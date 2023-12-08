@@ -32,6 +32,7 @@ def main(input_file):
         step_counts.append(steps)
     result = step_counts[0]
     for step_count in step_counts:
+        print(step_count / len(directions))
         result = np.lcm(result, step_count)
     print(result)
 
