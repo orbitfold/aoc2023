@@ -1,4 +1,5 @@
 import click
+import functools
 
 class Interval:
     def __init__(self, start, n):
@@ -79,11 +80,7 @@ def calculate_mapping(interval, mapping):
     return r, a & interval, b & interval
 
 def remove_empty_intervals(lst):
-    result = []
-    for interval in lst:
-        if interval != Interval(0, 0):
-            result.append(interval)
-    return result
+    return [interval for interval in lst if interval != Interval(0, 0)]
 
 def apply_maps(ranges, maps):
     mappings = []
@@ -98,19 +95,15 @@ def apply_maps(ranges, maps):
     return mappings + ranges
 
 def calculate_sequences_b(almanac):
-    almanac = parse_almanac(almanac)
-    result = almanac[0]
-    for maps in almanac[1:]:
-        print(result)
-        result = apply_maps(result, maps)
-    return min([r.start for r in result])
+    result = functools.reduce(lambda intervals, maps: apply_maps(intervals, maps), almanac)
+    return min([interval.start for interval in result])
 
 @click.command()
 @click.option('-i', '--input', help='Input file')
 def main(input):
     with open(input, 'r') as fd:
         data = fd.read()
-    result = calculate_sequences_b(data)
+    result = calculate_sequences_b(parse_almanac(data))
     print(result)
 
 if __name__ == '__main__':
