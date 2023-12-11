@@ -7,12 +7,7 @@ class Interval:
         self.n = max(0, n)
 
     def __eq__(self, other):
-        if self.n == 0 and other.n == 0:
-            return True
-        elif self.start == other.start and self.n == other.n:
-            return True
-        else:
-            return False
+        return (self.n == 0 and other.n == 0) or (self.start == other.start and self.n == other.n)
 
     def __add__(self, x):
         return Interval(self.start + x, self.n)
