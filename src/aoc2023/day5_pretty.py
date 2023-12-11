@@ -4,10 +4,7 @@ import functools
 class Interval:
     def __init__(self, start, n):
         self.start = start
-        if n < 0:
-            self.n = 0
-        else:
-            self.n = n
+        self.n = max(0, n)
 
     def __eq__(self, other):
         if self.n == 0 and other.n == 0:
