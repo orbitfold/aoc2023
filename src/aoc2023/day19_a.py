@@ -1,8 +1,11 @@
 import click
+import re
 
 class Rule:
     def __init__(self, descr):
-        match 
+        self.always_accept = False
+        self.always_reject = False
+        
 
     def check_part(self, part):
         pass
