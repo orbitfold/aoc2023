@@ -22,7 +22,7 @@ def main(input_file):
         eqset.append(x + dx * ti - eq[1][0] * ti - eq[0][0])
         eqset.append(y + dy * ti - eq[1][1] * ti - eq[0][1])
         eqset.append(z + dz * ti - eq[1][2] * ti - eq[0][2])
-    print solve(eqset)
+    print(solve(eqset))
             
 if __name__ == '__main__':
     main()
